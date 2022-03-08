@@ -1,0 +1,27 @@
+mixin topnav(buttonHighLight)
+  div.topnav
+
+    if buttonHighLight == 1 
+      a.active(href='.') Home
+      a(href='/b2') B2
+      a(href='/b3') B3
+      a(href='/b4') B4
+    
+    if buttonHighLight == 2 
+      a(href='.') Home
+      a.active(href='/b2') B2
+      a(href='/b3') B3
+      a(href='/b4') B4
+    
+    if buttonHighLight == 3 
+      a(href='.') Home
+      a(href='/b2') B2
+      a.active(href='/b3') B3
+      a(href='/b4') B4
+    
+    if buttonHighLight == 4 
+      a(href='.') Home
+      a(href='/b2') B2
+      a(href='/b3') B3
+      a.active(href='/b4') B4
+    

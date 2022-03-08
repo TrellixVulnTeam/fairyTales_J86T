@@ -1,0 +1,9 @@
+extends ../templates/template.pug
+include ../components/topnav.pug
+include ../components/frame.pug
+
+block content
+  +topnav(page)
+  .gallery
+    each fairyTale, i in fairyTales
+      +frame(fairyTale)
