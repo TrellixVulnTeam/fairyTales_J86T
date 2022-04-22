@@ -1,0 +1,23 @@
+.viewer {
+overflow: hidden;
+}
+
+.viewer h1 {
+text-align: center;
+}
+
+.viewer img {
+margin: auto;
+display: block;
+max-width: 80%;
+}
+
+.viewer p {
+font-size: 30px;
+}
+
+@media screen and (min-width: 685px) {
+    .viewer img {
+        max-width: 50%;
+    }
+}

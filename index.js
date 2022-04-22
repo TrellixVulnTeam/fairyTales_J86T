@@ -1,74 +1,20 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
-const api = express();
-const path = require('path');
+const app = express();
+const db = require('./db/db.js')
+const main = require('./resources/routes/main.js');
+const api = require('./resources/routes/api.js');
 
-let db = new sqlite3.Database('./db/fairytales.db', (err) => {
-  if (err) {
-    throw err;
-  }
-  db.run("CREATE TABLE IF NOT EXISTS fairytales(id INTEGER PRIMARY KEY, class INTEGER NOT NULL CHECK (class=2 OR class=3 OR class=4), title TEXT NOT NULL, textPath TEXT NOT NULL UNIQUE, imgPath TEXT NOT NULL UNIQUE)");
-  console.log('Connected to the database.');
-});
+const subdomain = require('express-subdomain');
 
 
-api.listen(80, () => {
+app.listen(80, () => {
   console.log('API up and running!');
 });
 
-api.use(express.static(__dirname));
-api.set('views', 'resources/frontend/views');
-api.set('view engine', 'pug')
-
-
-api.get('/', async(req, res) => {
-  res.render('home');
-});
-
-api.get('/b2', async(req, res) => {
-  const fairytales = await new Promise((resolve,reject) => {
-    db.all("SELECT * FROM fairytales WHERE class=2", (err, rows) => {
-      if (err) throw err;
-        res.render('gallery', {page: 2, fairyTales: rows});
-     });
-    });
-});
-
-api.get('/b3', async(req, res) => {
-  const fairytales = await new Promise((resolve,reject) => {
-    db.all("SELECT * FROM fairytales WHERE class=3", (err, rows) => {
-      if (err) throw err;
-        res.render('gallery', {page: 3, fairyTales: rows});
-     });
-    });
-});
-
-api.get('/b4', async(req, res) => {
-  const fairytales = await new Promise((resolve,reject) => {
-    db.all("SELECT * FROM fairytales WHERE class=4", (err, rows) => {
-       if (err) throw err;
-       res.render('gallery', {page: 4, fairyTales: rows});
-     });
-    });
-});
-
-api.get('/fairytales', async(req, res) => {
-  const fairytales = await new Promise((resolve,reject) => {
-    db.all("SELECT * FROM fairytales", (err, rows) => {
-       if (err) throw err;
-       resolve(rows);
-     });
-    });
-  res.json(fairytales);
-});
-
-api.get('/fairytales/:id', async(req, res) => {
-  const id = parseInt(req.params.id.replace(/[^\d.-]/g, ''));
-  const fairytales = await new Promise((resolve,reject) => {
-    db.all("SELECT * FROM fairytales WHERE id=?", [id], (err, rows) => {
-       if (err) throw err;
-       resolve(rows);
-     });
-    });
-  res.json(fairytales);
-});
+app.use('/stylesheets', express.static(__dirname + '/resources/frontend/stylesheets'));
+app.set('views', 'resources/frontend/views');
+app.set('view engine', 'pug')
+app.use(express.urlencoded({limit: '10mb',extended: true}));
+app.use('/', main);
+app.use('/api', api);

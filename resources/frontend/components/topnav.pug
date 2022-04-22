@@ -1,27 +1,61 @@
 mixin topnav(buttonHighLight)
-  div.topnav
+  div.topnav(id="topnav")
+      if buttonHighLight == 0
+        a(href='.') Home
+        a(href='/b2') B2
+        a(href='/b3') B3
+        a(href='/b4') B4
+        a(href='/fairytales') ALL    
+      if buttonHighLight == 1 
+        a.active(href='.') Home
+        a(href='/b2') B2
+        a(href='/b3') B3
+        a(href='/b4') B4
+        a(href='/fairytales') ALL
 
-    if buttonHighLight == 1 
-      a.active(href='.') Home
-      a(href='/b2') B2
-      a(href='/b3') B3
-      a(href='/b4') B4
-    
-    if buttonHighLight == 2 
-      a(href='.') Home
-      a.active(href='/b2') B2
-      a(href='/b3') B3
-      a(href='/b4') B4
-    
-    if buttonHighLight == 3 
-      a(href='.') Home
-      a(href='/b2') B2
-      a.active(href='/b3') B3
-      a(href='/b4') B4
-    
-    if buttonHighLight == 4 
-      a(href='.') Home
-      a(href='/b2') B2
-      a(href='/b3') B3
-      a.active(href='/b4') B4
-    
+      if buttonHighLight == 2 
+        a(href='.') Home
+        a.active(href='/b2') B2
+        a(href='/b3') B3
+        a(href='/b4') B4
+        a(href='/fairytales') ALL
+
+      if buttonHighLight == 3 
+        a(href='.') Home
+        a(href='/b2') B2
+        a.active(href='/b3') B3
+        a(href='/b4') B4
+        a(href='/fairytales') ALL
+      
+      if buttonHighLight == 4 
+        a(href='.') Home
+        a(href='/b2') B2
+        a(href='/b3') B3
+        a.active(href='/b4') B4
+        a(href='/fairytales') ALL
+      if buttonHighLight == 5
+        a(href='.') Home
+        a(href='/b2') B2
+        a(href='/b3') B3
+        a(href='/b4') B4
+        a.active(href='/fairytales') ALL
+      .search-container
+        form(action='/search' method="post")
+          input(type='text' placeholder='Search..' name='q')
+          button(type='submit')
+            i.fa.fa-search
+      a(href="javascript:void(0);" class="icon" onclick="toggleIcon()")
+        i(class="fa fa-bars")
+      script.
+        function toggleIcon() {
+          var topnav = document.getElementById("topnav");
+          if (topnav.className === "topnav") {
+            topnav.className += " responsive";
+          } else {
+            topnav.className = "topnav";
+          }
+        }
+
+
+
+      

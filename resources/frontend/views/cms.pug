@@ -1,0 +1,51 @@
+extends ../templates/template.pug
+
+block content
+    form(action="/add" method="POST" id="form")
+        input(type="text" placeholder="title" id="title" form_id="form" name="title")
+        br
+        select(id="class" form_id="form" name="class")
+            option(value=2) 2
+            option(value=3) 3
+            option(value=4) 4
+        br
+        textarea(placeholder="text" id="text" form_id="form" name="text")
+        br
+        input(type="file" id="file" form_id="form")
+        br
+        input(type="hidden" id="dataURI" form_id="form" name="file")
+        input(type="submit" form_id="form")
+
+    script.
+        // Get a reference to the file input
+        document.getElementById('file').addEventListener('change', resizeImage);
+
+        function resizeImage(evt) {
+            console.log(evt.target);
+            const files = evt.target.files;
+
+            if (files.length === 0) {
+                console.log('No files selected');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // set its dimension to target size
+
+                // draw source image into the off-screen canvas:
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = function() {
+                    canvas.width = img.width / 2;
+                    canvas.height = img.height / 2;
+                    ctx.drawImage(img, 0, 0, img.width / 2, img.height / 2);
+                    const dataURL = canvas.toDataURL('image/jpeg', 0.8);
+                    document.getElementById('dataURI').value = dataURL;
+                }
+            };
+            reader.readAsDataURL(files[0]);
+        }

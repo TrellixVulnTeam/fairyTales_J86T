@@ -1,5 +1,5 @@
 mixin frame(fairyTale)
-    .frame
-        a(target='_blank' href='img_5terre.jpg')
-            img(src="../resources/frontend"+fairyTale.imgPath alt=fairyTale.title)
-        .title= fairyTale.title
+    a(href='/fairytales/' + fairyTale.id).frame
+        div
+            img(src=fairyTale.image alt=fairyTale.title)
+            h1= fairyTale.title

@@ -1,0 +1,10 @@
+extends ../templates/template.pug
+include ../components/topnav.pug
+include ../components/viewer.pug
+
+block content
+    +topnav(0)
+    each fairyTale, i in fairyTales
+        +viewer(fairyTale)
+    else
+      h1 No fairytales found!
