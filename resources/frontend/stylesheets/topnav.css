@@ -25,6 +25,7 @@
 
 .topnav .icon {
   display: none;
+  background-color: var(--green);
 }
 
 .topnav .search-container {

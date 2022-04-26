@@ -70,13 +70,17 @@ router.post('/add', async(req, res) => {
 })
 
 router.post('/search', async(req, res) => {
-    const query = req.body.q;
-    db.all("SELECT * FROM fairytales WHERE title LIKE ?", ['%' + query + '%'], (err, rows) => {
-        if (err) {
-            res.send(err);
-            throw err;
+    let query = req.body.q;
+    const b2 = (req.body.b2 === "true") ? 0: 2;
+    const b3 = (req.body.b3 === "true") ? 0: 3;
+    const b4 = (req.body.b4 === "true") ? 0: 4;
+
+    db.all("SELECT * FROM fairytales WHERE title LIKE ? AND class NOT IN (?, ?, ?)", ['%' + query + '%', b2, b3, b4], (err, rows) => {
+        if (err) throw err;
+        if (!query) {
+            rows = [];
         }
-        res.send(rows);
+        res.send(rows)
     });
 });
 

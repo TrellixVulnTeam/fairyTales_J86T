@@ -1,47 +1,16 @@
 mixin topnav(buttonHighLight)
   div.topnav(id="topnav")
-      if buttonHighLight == 0
-        a(href='.') Home
-        a(href='/b2') B2
-        a(href='/b3') B3
-        a(href='/b4') B4
-        a(href='/fairytales') ALL    
-      if buttonHighLight == 1 
-        a.active(href='.') Home
-        a(href='/b2') B2
-        a(href='/b3') B3
-        a(href='/b4') B4
-        a(href='/fairytales') ALL
-
-      if buttonHighLight == 2 
-        a(href='.') Home
-        a.active(href='/b2') B2
-        a(href='/b3') B3
-        a(href='/b4') B4
-        a(href='/fairytales') ALL
-
-      if buttonHighLight == 3 
-        a(href='.') Home
-        a(href='/b2') B2
-        a.active(href='/b3') B3
-        a(href='/b4') B4
-        a(href='/fairytales') ALL
-      
-      if buttonHighLight == 4 
-        a(href='.') Home
-        a(href='/b2') B2
-        a(href='/b3') B3
-        a.active(href='/b4') B4
-        a(href='/fairytales') ALL
-      if buttonHighLight == 5
-        a(href='.') Home
-        a(href='/b2') B2
-        a(href='/b3') B3
-        a(href='/b4') B4
-        a.active(href='/fairytales') ALL
+      a(href='.' class=(buttonHighLight === 1) ? 'active':null) Home
+      a(href='/b2' class=(buttonHighLight === 2) ? 'active':null) B2
+      a(href='/b3' class=(buttonHighLight === 3) ? 'active':null) B3
+      a(href='/b4' class=(buttonHighLight === 4) ? 'active':null) B4
+      a(href='/fairytales' class=(buttonHighLight === 5) ? 'active':null) ALL
       .search-container
         form(action='/search' method="post")
           input(type='text' placeholder='Search..' name='q')
+          input(type='hidden' name='b2' value='true')
+          input(type='hidden' name='b3' value='true')
+          input(type='hidden' name='b4' value='true')
           button(type='submit')
             i.fa.fa-search
       a(href="javascript:void(0);" class="icon" onclick="toggleIcon()")

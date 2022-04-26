@@ -1,0 +1,27 @@
+extends gallery.pug
+
+prepend gallery
+    .search
+        h1= query
+        form(action='/search' method="post" id="search")
+            input(type="hidden" name="q" value=query)
+            label.filter
+                input(type='checkbox' checked=(prevFilters[0] !== 0)?false:true name="b2" value="true" onchange="this.value = this.checked" id="b2")
+                span.checkbox B2
+            label.filter
+                input(type='checkbox' checked=(prevFilters[1] !== 0)?false:true name="b3" value="true" onchange="this.value = this.checked")
+                span.checkbox B3
+            label.filter
+                input(type='checkbox' checked=(prevFilters[2] !== 0)?false:true name="b4" value="true" onchange="this.value = this.checked")
+                span.checkbox B4
+            select(form="search" name="sort").sort
+                option(value="az" selected=(prevSort==="az")) A-Z
+                option(value="za" selected=(prevSort==="za")) Z-A
+                option(value="24" selected=(prevSort==="24")) 2-4
+                option(value="42" selected=(prevSort==="42")) 4-2
+            input(type="submit" value="apply").apply
+        
+
+
+append head
+    link(rel='stylesheet' type="text/css" href='stylesheets/search.css')

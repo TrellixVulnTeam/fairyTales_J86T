@@ -3,9 +3,11 @@ include ../components/topnav.pug
 include ../components/frame.pug
 
 block content
-  +topnav(page)
-  .gallery
-    each fairyTale, i in fairyTales
-      +frame(fairyTale)
-    else
-      h1 No fairytales found!
+      +topnav(page)
+      block gallery
+        .gallery
+          - var fairyTales = fairyTales
+          each fairyTale, i in fairyTales
+            +frame(fairyTale)
+          else
+            h1 No fairytales match the current criteria!
