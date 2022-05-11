@@ -5,8 +5,6 @@ const db = require('./db/db.js')
 const main = require('./resources/routes/main.js');
 const api = require('./resources/routes/api.js');
 
-const subdomain = require('express-subdomain');
-
 
 app.listen(80, () => {
   console.log('API up and running!');

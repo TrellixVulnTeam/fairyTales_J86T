@@ -1,6 +1,8 @@
 .topnav {
   overflow: hidden;
   background-color: var(--gray);
+  height: 56px;
+  transition: height 1s;
 }
 
 .topnav a {
@@ -11,6 +13,7 @@
   padding: 14px 16px;
   text-decoration: none;
   font-size: 24px;
+  transition: background-color, color 300ms;
 }
 
 .topnav a:hover {
@@ -51,6 +54,7 @@ color: var(--off-white);
 font-size: 17px;
 border: none;
 cursor: pointer;
+transition: background-color, color 300ms;
 }
 
 .topnav .search-container button:hover {
@@ -59,7 +63,9 @@ color: black;
 }
 
 @media screen and (max-width: 685px) {
-  .topnav a:not(:first-child) {display: none;}
+  .topnav a:not(:first-child) {
+    display: none;
+  }
   .topnav .search-container:not(:first-child) {display: none;}
   .topnav a.icon {
   float: right;
@@ -70,6 +76,7 @@ color: black;
 @media screen and (max-width: 685px) {
   .topnav.responsive {
   position: relative;
+  height: 337px;
   }
   .topnav.responsive .icon {
   position: absolute;

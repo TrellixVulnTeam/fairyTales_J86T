@@ -1,10 +1,15 @@
 extends ../templates/template.pug
 include ../components/topnav.pug
-include ../components/viewer.pug
 
 block content
     +topnav(0)
-    each fairyTale, i in fairyTales
-        +viewer(fairyTale)
-    else
-      h1 No fairytales found!
+    .viewer
+        h1= fairyTale.title
+        img(src=fairyTale.image)
+        p= fairyTale.text
+        h3= 'B' + fairyTale.class
+
+append head
+    meta(property='og:title' content=fairyTale.title)
+    meta(property='og:image' content="http://localhost/api/base64?id=" + fairyTale.id)
+    title= title
