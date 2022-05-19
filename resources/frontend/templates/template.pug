@@ -3,17 +3,20 @@ include ../components/frame.pug
 
 doctype html
 
-head
-  meta(charset='UTF-8')
-  meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  base(href='/')
-  link(rel='stylesheet' type="text/css" href='stylesheets/root.css')
-  link(rel='stylesheet' type="text/css" href='stylesheets/topnav.css')
-  link(rel='stylesheet' type="text/css" href='stylesheets/gallery.css')
-  link(rel='stylesheet' type="text/css" href='stylesheets/viewer.css')
-  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
-  block head
+html(lang='el')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(name="theme-color" content="#04AA6D")
+    meta(name="description" content="Fairytales")
+    base(href='/')
+    link(rel='stylesheet' type="text/css" href='stylesheets/root.css')
+    link(rel='stylesheet' type="text/css" href='stylesheets/topnav.css')
+    link(rel='stylesheet' type="text/css" href='stylesheets/gallery.css')
+    link(rel='stylesheet' type="text/css" href='stylesheets/viewer.css')
+    script(src="https://kit.fontawesome.com/77a7c8653d.js" crossorigin="anonymous")
+    block head
 
-body
-  block content
+  body
+    block content

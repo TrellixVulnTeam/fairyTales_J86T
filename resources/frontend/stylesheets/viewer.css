@@ -11,6 +11,7 @@ text-align: center;
 margin: auto;
 display: block;
 max-width: 80%;
+min-height: 300px;
 }
 
 .viewer p {

@@ -62,7 +62,7 @@ router.post('/add', async(req, res) => {
     res.redirect('/add')
 })
 
-router.post('/search', async(req, res) => {
+async function search(req, res) {
     let query = req.body.q;
     const b2 = (req.body.b2 === "true") ? 0: 2;
     const b3 = (req.body.b3 === "true") ? 0: 3;
@@ -97,6 +97,9 @@ router.post('/search', async(req, res) => {
         }
         res.render('search', {page: 0, fairyTales: rows, query: query, prevSort: req.body.sort, prevFilters: [b2, b3, b4], title: query + " | Fairy Tales"});
     });
-});
+}
+
+router.post('/search', search)
+router.get('/search', search)
 
 module.exports = router;

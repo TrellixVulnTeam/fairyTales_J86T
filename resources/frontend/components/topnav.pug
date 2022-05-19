@@ -11,9 +11,9 @@ mixin topnav(buttonHighLight)
           input(type='hidden' name='b2' value='true')
           input(type='hidden' name='b3' value='true')
           input(type='hidden' name='b4' value='true')
-          button(type='submit')
+          button(type='submit' aria-label='search')
             i.fa.fa-search
-      a(href="javascript:void(0);" class="icon" onclick="toggleIcon()")
+      a(class="icon" onclick="toggleIcon()")
         i(class="fa fa-bars")
       script.
         function toggleIcon() {
