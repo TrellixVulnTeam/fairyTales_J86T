@@ -6,7 +6,7 @@ const main = require('./resources/routes/main.js');
 const api = require('./resources/routes/api.js');
 
 
-app.listen(80, () => {
+app.listen(process.env.PORT || 80, () => {
   console.log('API up and running!');
 });
 
